@@ -5,7 +5,6 @@ const hasbin = require('hasbin');
 const tc = require('@actions/tool-cache');
 
 async function setup() {
-
 	if (hasbin.sync('kubediff')) {
 		return;
 	}
@@ -19,7 +18,12 @@ async function setup() {
 
 	const kubeDiffDownloadUrl = `https://github.com/yoo/kubediff-action/releases/download/v${kubeDiffVersion}/kubediff`;
 
-	const kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
+	try {
+		const kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
+	} catch (error) {
+		console.log(error);
+		return core.setFailed('failed to download kubediff');
+	}
 	fs.chmodSync(kubeDiffPath, '775');
 	cachedKubeDiffPath = await tc.cacheDir(kubeDiffPath, 'kubediff', kubeDiffVersion);
 	core.addPath(cachedKubeDiffPath);
@@ -47,11 +51,12 @@ async function run() {
 
 	console.log(args);
 	core.exportVariable('KUBECTL_EXTERNAL_DIFF', 'kubediff');
-	await exec.exec('kubectl', args);
+	try {
+		await exec.exec('kubectl', args);
+	} catch (error) {
+		console.log(error)
+		core.setFailed('failed to run kubectl diff');
+	}
 }
 
-try {
-	run();
-} catch (error) {
-	core.setFailed(error.message);
-}
+run();
