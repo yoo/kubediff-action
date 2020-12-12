@@ -1,0 +1,10 @@
+{
+  "name": "kubediff-action",
+  "version": "0.0.0",
+  "main": "main.js",
+  "author": "yoo",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/tool-cache": "^1.6.1"
+  }
+}

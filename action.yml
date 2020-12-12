@@ -1,0 +1,32 @@
+name: "KubeDiff Action"
+author: "yoo"
+description: "Run kubectl diff and comment the changes on the pull request"
+branding:
+  icon: box
+  color: blue
+inputs:
+  manifests:
+    description: "Line separated list of manifest files"
+    required: true
+  comment_pr:
+    description: "Create a pull request comment containing the diff"
+    required: true
+    default: "true"
+  filtered_fields:
+    description: "Line separated list of fields to filter out when displaying the diff"
+    required: true
+    default: |
+      /metadata/annotations/kubectl.kubernetes.io\/last-applied-configuration
+      /metadata/creationTimestamp
+      /metadata/managedFields
+      /metadata/resourceVersion
+      /metadata/selfLink
+      /metadata/uid
+  debug:
+    description: "Toggle debug output"
+    required: false
+
+runs:
+  using: "node12"
+  pre: "setup.js"
+  main: "main.js"

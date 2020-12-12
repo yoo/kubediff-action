@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test
+  namespace: default
+data:
+  simple: bar
+  add: baz
+  multiline: |
+    lineone
+    change
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: new-object
+  namespace: default
+data:
+  fancy: pants
