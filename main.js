@@ -1,22 +1,57 @@
-const spawnSync = require('child_process').spawnSync;
+const core = require('@actions/core');
+const exec = require('@actions/exec');
+const fs = require('fs');
+const hasbin = require('hasbin');
+const tc = require('@actions/tool-cache');
 
-if (process.env.INPUT_CONTEXT != undefined) {
-	args.push(`--context ${process.env.INPUT_CONTEXT}`);
+async function setup() {
+
+	if (hasbin.sync('kubediff')) {
+		return;
+	}
+	const kubeDiffVersion = fs.readFileSync('.version', 'utf8');
+
+	let cachedKubeDiffPath = tc.find('kubediff', kubeDiffVersion);
+	if (cachedKubeDiffPath) {
+		core.addPath(cachedKubeDiffPath);
+		return;
+	}
+
+	const kubeDiffDownloadUrl = `https://github.com/yoo/kubediff-action/releases/download/v${kubeDiffVersion}/kubediff`;
+
+	const kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
+	fs.chmodSync(kubeDiffPath, '775');
+	cachedKubeDiffPath = await tc.cacheDir(kubeDiffPath, 'kubediff', kubeDiffVersion);
+	core.addPath(cachedKubeDiffPath);
 }
 
-const lines = process.env.INPUT_MANIFESTS.split('\n');
+async function run() {
+	await setup();
 
-const manifests = lines.filter(function (el) {
-	return el != "";
-});
+	let args = []
+	const context = core.getInput('context');
+	if (context != '') {
+		args.push(`--context ${context}`);
+	}
 
-let args = ['diff'];
-for (const index in manifests) {
-	args.push('-f');
-	args.push(manifests[index]);
-};
+	const lines = core.getInput('manifests');
+	const manifests = lines.split('\n').filter(function (el) {
+		return el != "";
+	});
 
-console.log(args)
-process.env.KUBECTL_EXTERNAL_DIFF = 'kubediff';
-const proc = spawnSync('kubectl', args, {stdio: 'inherit'});
-process.exit(proc.status);
+	args.push('diff');
+	for (const index in manifests) {
+		args.push('-f');
+		args.push(manifests[index]);
+	};
+
+	console.log(args);
+	core.exportVariable('KUBECTL_EXTERNAL_DIFF', 'kubediff');
+	await exec.exec('kubectl', args);
+}
+
+try {
+	run();
+} catch (error) {
+	core.setFailed(error.message);
+}

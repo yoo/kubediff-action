@@ -38,7 +38,3 @@ jobs:
         with:
           manifests: "test_assets/update.yml"
           debug: true
-
-      - name: Test setup.js
-        run: |
-          node setup.js

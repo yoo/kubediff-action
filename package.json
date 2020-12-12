@@ -5,6 +5,9 @@
   "author": "yoo",
   "license": "MIT",
   "dependencies": {
-    "@actions/tool-cache": "^1.6.1"
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/tool-cache": "^1.6.1",
+    "hasbin": "^1.2.3"
   }
 }
