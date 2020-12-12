@@ -1,0 +1,26 @@
+name: Test Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  TestMain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v2
+
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1.1.0
+
+      - name: kubectl apply
+        run: |
+          kubectl apply -f test_assets/original.yml
+
+      - name: KubeDiff
+        uses: yoo/kubediff-action@main
+        with:
+          manifests: "test_assets/update.yml"
+          comment_pr: false
