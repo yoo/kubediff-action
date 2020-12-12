@@ -30,11 +30,11 @@ async function run() {
 
 	let args = []
 	const context = core.getInput('context');
-	if (context != undefined) {
-		args.push(`--context ${process.env.INPUT_CONTEXT}`);
+	if (context != '') {
+		args.push(`--context ${context}`);
 	}
 
-	const lines = core.getInput('manifests')
+	const lines = core.getInput('manifests');
 	const manifests = lines.split('\n').filter(function (el) {
 		return el != "";
 	});
@@ -45,9 +45,13 @@ async function run() {
 		args.push(manifests[index]);
 	};
 
-	console.log(args)
+	console.log(args);
 	core.exportVariable('KUBECTL_EXTERNAL_DIFF', 'kubediff');
 	await exec.exec('kubectl', args);
 }
 
-run();
+try {
+	run();
+} catch (error) {
+	core.setFailed(error.message);
+}
