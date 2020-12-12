@@ -18,8 +18,9 @@ async function setup() {
 
 	const kubeDiffDownloadUrl = `https://github.com/yoo/kubediff-action/releases/download/v${kubeDiffVersion}/kubediff`;
 
+	let kubeDiffPath = ''
 	try {
-		const kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
+		kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
 	} catch (error) {
 		console.log(error);
 		return core.setFailed('failed to download kubediff');
