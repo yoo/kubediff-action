@@ -1,0 +1,25 @@
+name: Create Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CreateTag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v2
+
+      - name: Read .version File
+        run: |
+          KUBEDIFF_VERSION="$(cat .version)"
+          echo "KUBEDIFF_VERSION=${KUBEDIFF_VERSION}" >> "${GITHUB_ENV}"
+
+      - name: Create Tag
+        id: tag
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          custom_tag: v${{ env.KUBEDIFF_VERSION }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
