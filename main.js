@@ -8,7 +8,7 @@ async function setup() {
 	if (hasbin.sync('kubediff')) {
 		return;
 	}
-	const kubeDiffVersion = fs.readFileSync('.version', 'utf8');
+	const kubeDiffVersion = fs.readFileSync('.version', 'utf8').trim();
 
 	let cachedKubeDiffPath = tc.find('kubediff', kubeDiffVersion);
 	if (cachedKubeDiffPath) {
@@ -17,15 +17,23 @@ async function setup() {
 	}
 
 	const kubeDiffDownloadUrl = `https://github.com/yoo/kubediff-action/releases/download/v${kubeDiffVersion}/kubediff`;
+	console.log(`download kubediff from ${kubeDiffDownloadUrl}`)
 
+	let kubeDiffPath = '';
 	try {
-		const kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
+		kubeDiffPath = await tc.downloadTool(kubeDiffDownloadUrl);
 	} catch (error) {
 		console.log(error);
 		return core.setFailed('failed to download kubediff');
 	}
 	fs.chmodSync(kubeDiffPath, '775');
-	cachedKubeDiffPath = await tc.cacheDir(kubeDiffPath, 'kubediff', kubeDiffVersion);
+
+	try {
+		cachedKubeDiffPath = await tc.cacheFile(kubeDiffPath, 'kubediff', 'kubediff', kubeDiffVersion);
+	} catch (error) {
+		console.log(error)
+		return core.setFailed('failed to cache kubediff');
+	}
 	core.addPath(cachedKubeDiffPath);
 }
 

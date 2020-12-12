@@ -4,6 +4,7 @@ on:
   release:
     types:
       - created
+      - published
 
 jobs:
   TestRelease:
@@ -34,5 +35,5 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: release/v${{ env.KUBEDIFF_VERSION }}
-          base: main
+          base: v1
           title: Release v${{ env.KUBEDIFF_VERSION }}
