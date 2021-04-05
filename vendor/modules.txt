@@ -1,9 +1,5 @@
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
-# github.com/DATA-DOG/go-sqlmock v1.3.3
-## explicit
-# github.com/Luzifer/rconfig v2.2.0+incompatible
-## explicit
 # github.com/golang/protobuf v1.4.3
 ## explicit
 github.com/golang/protobuf/proto
@@ -38,13 +34,9 @@ github.com/mitchellh/go-ps
 # github.com/pkg/errors v0.9.1
 ## explicit
 github.com/pkg/errors
-# github.com/sergi/go-diff v1.1.0
+# github.com/sergi/go-diff v1.2.0
 ## explicit
 github.com/sergi/go-diff/diffmatchpatch
-# github.com/sethvargo/go-githubactions v0.3.0
-## explicit
-# github.com/spf13/pflag v1.0.5
-## explicit
 # github.com/virtuald/go-ordered-json v0.0.0-20170621173500-b18e6e673d74
 github.com/virtuald/go-ordered-json
 # golang.org/x/crypto v0.0.0-20201208171446-5f87f3452ae9
@@ -113,8 +105,6 @@ google.golang.org/protobuf/reflect/protoreflect
 google.golang.org/protobuf/reflect/protoregistry
 google.golang.org/protobuf/runtime/protoiface
 google.golang.org/protobuf/runtime/protoimpl
-# gopkg.in/validator.v2 v2.0.0-20200605151824-2b28d334fa05
-## explicit
 # gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 ## explicit
 gopkg.in/yaml.v3
