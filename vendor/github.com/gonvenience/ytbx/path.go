@@ -39,7 +39,7 @@ const (
 	GoPatchStyle
 )
 
-// Path points to a section in a data struture by using names to identify the
+// Path points to a section in a data structure by using names to identify the
 // location.
 // Example:
 //   ---
@@ -49,6 +49,7 @@ const (
 // For example, `sizing.api.count` points to the key `sizing` of the root
 // element and in there to the key `api` and so on and so forth.
 type Path struct {
+	Root         *InputFile
 	DocumentIdx  int
 	PathElements []PathElement
 }
@@ -106,6 +107,18 @@ func (path *Path) ToDotStyle() string {
 	return strings.Join(sections, ".")
 }
 
+// RootDescription returns a description of the root level of this path, which
+// could be the number of the respective document inside a YAML or if available
+// the name of the document
+func (path *Path) RootDescription() string {
+	if path.Root != nil && path.DocumentIdx < len(path.Root.Names) {
+		return path.Root.Names[path.DocumentIdx]
+	}
+
+	// Note: human style counting that starts with 1
+	return fmt.Sprintf("document #%d", path.DocumentIdx+1)
+}
+
 // NewPathWithPathElement returns a new path based on a given path adding a new
 // path element.
 func NewPathWithPathElement(path Path, pathElement PathElement) Path {
@@ -113,6 +126,7 @@ func NewPathWithPathElement(path Path, pathElement PathElement) Path {
 	copy(result, path.PathElements)
 
 	return Path{
+		Root:         path.Root,
 		DocumentIdx:  path.DocumentIdx,
 		PathElements: append(result, pathElement)}
 }
@@ -318,7 +332,7 @@ func ParseGoPatchStylePathString(path string) (Path, error) {
 		return Path{DocumentIdx: 0, PathElements: nil}, nil
 	}
 
-	// Poor mans solution to deal with escaped slashes, replace them with a "safe"
+	// Hacky solution to deal with escaped slashes, replace them with a "safe"
 	// replacement string that is later resolved into a simple slash
 	path = strings.Replace(path, `\/`, `%2F`, -1)
 
