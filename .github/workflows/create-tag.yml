@@ -21,6 +21,6 @@ jobs:
         id: tag
         uses: mathieudutour/github-tag-action@v5.1
         with:
-          custom_tag: v${{ env.KUBEDIFF_VERSION }}
+          custom_tag: ${{ env.KUBEDIFF_VERSION }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: main
