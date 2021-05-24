@@ -1,7 +1,6 @@
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
 # github.com/golang/protobuf v1.5.2
-## explicit
 github.com/golang/protobuf/proto
 # github.com/gonvenience/bunt v1.3.2
 github.com/gonvenience/bunt
@@ -11,7 +10,7 @@ github.com/gonvenience/term
 github.com/gonvenience/text
 # github.com/gonvenience/wrap v1.1.0
 github.com/gonvenience/wrap
-# github.com/gonvenience/ytbx v1.4.0
+# github.com/gonvenience/ytbx v1.4.2
 ## explicit
 github.com/gonvenience/ytbx
 # github.com/google/go-github/v32 v32.1.0
@@ -28,10 +27,8 @@ github.com/lucasb-eyer/go-colorful
 # github.com/mattn/go-ciede2000 v0.0.0-20170301095244-782e8c62fec3
 github.com/mattn/go-ciede2000
 # github.com/mattn/go-isatty v0.0.12
-## explicit
 github.com/mattn/go-isatty
 # github.com/mitchellh/go-ps v1.0.0
-## explicit
 github.com/mitchellh/go-ps
 # github.com/pkg/errors v0.9.1
 ## explicit
@@ -50,8 +47,7 @@ golang.org/x/crypto/openpgp/elgamal
 golang.org/x/crypto/openpgp/errors
 golang.org/x/crypto/openpgp/packet
 golang.org/x/crypto/openpgp/s2k
-# golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6
-## explicit
+# golang.org/x/net v0.0.0-20210428140749-89ef3d95e781
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
 # golang.org/x/oauth2 v0.0.0-20210413134643-5e61552d6c78
