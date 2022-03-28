@@ -32,7 +32,7 @@ jobs:
           echo "KUBEDIFF_VERSION=${KUBEDIFF_VERSION}" >> "${GITHUB_ENV}"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           branch: release/v${{ env.KUBEDIFF_VERSION }}
           base: v1
