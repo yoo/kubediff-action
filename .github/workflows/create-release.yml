@@ -18,7 +18,7 @@ jobs:
           go-version: "1"
 
       - name: Lint Go Files
-        uses: golangci/golangci-lint-action@v2
+        uses: golangci/golangci-lint-action@v3
 
       - name: Go Build
         run: |
