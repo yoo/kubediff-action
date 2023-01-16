@@ -8,10 +8,8 @@ require (
 	github.com/google/go-github/v32 v32.1.0
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/mattn/go-isatty v0.0.12 // indirect
-	github.com/mitchellh/go-ps v1.0.0 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/sergi/go-diff v1.2.0
+	github.com/sergi/go-diff v1.3.1
 	golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b // indirect
 	golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6 // indirect
 	golang.org/x/oauth2 v0.0.0-20210413134643-5e61552d6c78
