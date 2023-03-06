@@ -28,10 +28,8 @@ github.com/lucasb-eyer/go-colorful
 # github.com/mattn/go-ciede2000 v0.0.0-20170301095244-782e8c62fec3
 github.com/mattn/go-ciede2000
 # github.com/mattn/go-isatty v0.0.12
-## explicit
 github.com/mattn/go-isatty
 # github.com/mitchellh/go-ps v1.0.0
-## explicit
 github.com/mitchellh/go-ps
 # github.com/pkg/errors v0.9.1
 ## explicit
@@ -41,7 +39,7 @@ github.com/pkg/errors
 github.com/sergi/go-diff/diffmatchpatch
 # github.com/virtuald/go-ordered-json v0.0.0-20170621173500-b18e6e673d74
 github.com/virtuald/go-ordered-json
-# golang.org/x/crypto v0.0.0-20210421170649-83a5a9bb288b
+# golang.org/x/crypto v0.1.0
 ## explicit
 golang.org/x/crypto/cast5
 golang.org/x/crypto/openpgp
@@ -50,25 +48,21 @@ golang.org/x/crypto/openpgp/elgamal
 golang.org/x/crypto/openpgp/errors
 golang.org/x/crypto/openpgp/packet
 golang.org/x/crypto/openpgp/s2k
-# golang.org/x/net v0.0.0-20210423184538-5f58ad60dda6
-## explicit
+# golang.org/x/net v0.1.0
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
 # golang.org/x/oauth2 v0.0.0-20210413134643-5e61552d6c78
 ## explicit
 golang.org/x/oauth2
 golang.org/x/oauth2/internal
-# golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-## explicit
+# golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4
 golang.org/x/sync/syncmap
-# golang.org/x/sys v0.0.0-20210423185535-09eb48e85fd7
-## explicit
+# golang.org/x/sys v0.1.0
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.0.0-20210422114643-f5beecf764ed
-## explicit
+# golang.org/x/term v0.1.0
 golang.org/x/term
 # google.golang.org/appengine v1.6.7
 ## explicit
